@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+    <body>
+        <div id="testThread"></div>
+        <div class="xxx">
+            <img src="http://hoanvu.net/data/images/835/photo-girl-xinh-bikini-sexy_08.jpg">
+        </div>
+        <script type="text/javascript">
+
+            function DomGetElementsByClassName(classname, node) {
+                if (!node) node = document.getElementsByTagName("body")[0];
+                var a = [];
+                var re = new RegExp('\\b' + classname + '\\b');
+                var els = node.getElementsByTagName("*");
+                for (var i = 0, j = els.length; i < j; i++)
+                    if (re.test(els[i].className)) a.push(els[i]);
+                return a;
+            }
+
+            function ResizeImageIfMaxWidth(className, maxWidth) {
+                var elmsByClassName;
+                try {
+                    elmsByClassName = document.getElementsByClassName(className);
+                } catch(elbcn) {
+                    elmsByClassName = DomGetElementsByClassName(className, null);
+                }
+                var imgs = new Array();
+                var counter = 0;
+                for (var i = 0; i < elmsByClassName.length; i++) {
+                    var img = elmsByClassName[i].getElementsByTagName("img");
+                    for (var j = 0; j < img.length; j++) {
+                        imgs[counter] = img[j];
+                        counter++;
+                    }
+                }
+
+                for (var i = 0; i < imgs.length; i++) {
+                    if (imgs[i].width > maxWidth) {
+                        imgs[i].width = maxWidth;
+                    }
+                    CreateLinkToNativeImage(imgs[i]);
+                }
+            }
+
+
+            function CreateLinkToNativeImage(img) {
+                var elm = document.createElement("div");
+                elm.innerHTML =
+                    "<a href='" + img.src + "' "
+                        + "target='_blank' "
+                        + "style='display:block; padding:3px; border:solid 1px #666; background-color:#ffffaa;text-decoration:none; font-size:0.8em;' >"
+                        + "Click here to see full image (cause image resized to fit content)</a>";
+
+                img.parentNode.insertBefore(elm, img);
+            
+            }
+ 
+            function Thread(functionCallBack,delayExec, tThread,countThread ) {
+                if (!countThread) countThread = 0;
+                if (!delayExec) delayExec = 0;
+                if (countThread > 0) {
+                    if(countThread>1) {
+                        clearTimeout(tThread);
+                        countThread = 0;
+                        return;
+                    }
+                    countThread++;
+                }
+                if (!tThread) tThread = setTimeout(function () { functionCallBack(); }, delayExec);
+            }
+
+            Thread(function () {
+                document.getElementById("testThread").innerHTML+= ("xxx1");
+            }, 3000);
+            Thread(function () {
+                document.getElementById("testThread").innerHTML += ("xxx2");
+            },2000);
+
+            Thread(function () {
+                document.getElementById("testThread").innerHTML += ("xxx3");
+            }, 1000);
+            var kkk = "aloo";
+            Thread(function () { Aola(kkk); }, 5000);
+            
+            function Aola(dd)
+            { document.getElementById("testThread").innerHTML += dd; }
+
+            document.getElementById("testThread").innerHTML += ("Onload");
+
+
+            Thread(function () { ResizeImageIfMaxWidth('xxx', 100); },3000);
+       
+        </script>
+    </body>
+</html>

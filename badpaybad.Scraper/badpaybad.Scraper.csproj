@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C122E5D5-8E6D-4B72-92D0-FE368EEB12BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>badpaybad.Scraper</RootNamespace>
+    <AssemblyName>badpaybad.Scraper</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\Config.cs" />
+    <Compile Include="DTO\Document.cs" />
+    <Compile Include="DTO\ExtractedInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\File.cs" />
+    <Compile Include="DTO\Maping.cs" />
+    <Compile Include="DTO\Reports.cs" />
+    <Compile Include="DTO\Link.cs" />
+    <Compile Include="CommonResouces.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResouces.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\ScraperObject.cs" />
+    <Compile Include="Repository\DataCollectRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repository\IDataCollectRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repository\RepositoryContainer.cs" />
+    <Compile Include="Repository\DocumentRepository.cs" />
+    <Compile Include="Repository\LinkRepository.cs" />
+    <Compile Include="Services\DataMapingCommon.cs" />
+    <Compile Include="Services\DataMapingAbstract.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\DownloaderAbstract.cs" />
+    <Compile Include="Services\DownloaderCommon.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Services\HtmlParserAbstract.cs" />
+    <Compile Include="Services\HtmlParserCommon.cs" />
+    <Compile Include="Repository\IDocumentRepository.cs" />
+    <Compile Include="Services\IDataMaping.cs" />
+    <Compile Include="Services\IDownloader.cs" />
+    <Compile Include="Repository\IFileRepository.cs" />
+    <Compile Include="Services\IHtmlParser.cs" />
+    <Compile Include="Services\Events.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ILinkRepository.cs" />
+    <Compile Include="Services\IScraper.cs" />
+    <Compile Include="Services\IScraperManager.cs" />
+    <Compile Include="Services\ScraperAbstract.cs" />
+    <Compile Include="Services\ScraperCommon.cs" />
+    <Compile Include="Services\ScraperManager.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\Files.cs" />
+    <Compile Include="Utils\HtmlExtractor.cs" />
+    <Compile Include="Utils\HttpRequest.cs" />
+    <Compile Include="Utils\LogError.cs" />
+    <Compile Include="Utils\ThreadSafe.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommonResouces.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResouces.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\HtmlAgilityPack.dll" />
+    <Content Include="dll\HtmlAgilityPack.pdb" />
+    <Content Include="dll\HtmlAgilityPack.xml" />
+    <None Include="dll\mimetype.txt" />
+    <Content Include="dll\nunit.framework.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
